@@ -1,6 +1,8 @@
 import json
 
 
+# TODO Move to its own module
+# TODO Add methods for reading the creds from files.
 class GoogleCredentials:
 
     def __init__(self, client_id, auth_uri, redirect_uris):
@@ -9,13 +11,7 @@ class GoogleCredentials:
         self.redirect_uris = redirect_uris
 
 
-class FeedlyBackupConfig:
-
-    def __init__(self, response_type, scope):
-        self.response_type = response_type
-        self.scope = scope
-
-
+# TODO Added tests for missing keys
 def parse_google_credentials(credentials):
     parsed_json = json.loads(credentials)
     installed = parsed_json['installed']
@@ -26,6 +22,16 @@ def parse_google_credentials(credentials):
     )
 
 
+# TODO Move to its own module
+# TODO Add methods for reading the configs from files.
+class FeedlyBackupConfig:
+
+    def __init__(self, response_type, scope):
+        self.response_type = response_type
+        self.scope = scope
+
+
+# TODO Added tests for missing keys
 def parse_feedly_backup_config(config):
     parsed_json = json.loads(config)
     return FeedlyBackupConfig(
@@ -34,6 +40,7 @@ def parse_feedly_backup_config(config):
     )
 
 
+# TODO Move to its own module
 def generate_auth_url(google_creds, backup_config):
     return (f'{google_creds.auth_uri}?'
             f'scope={backup_config.scope}'
@@ -58,6 +65,7 @@ RAW_TEST_CONFIG = ('{'
                    '}')
 
 
+# TODO Move the tests to their proper locations
 def test_parse_feedly_backup_config_returns_the_config_with_scope():
     config = parse_feedly_backup_config(RAW_TEST_CONFIG)
 
