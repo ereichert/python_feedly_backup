@@ -6,3 +6,8 @@ run:
 .PHONY: test
 test:
 	pipenv run pytest
+
+
+.PHONY: watchtests
+watchtests:
+	pipenv run pytest-watch
